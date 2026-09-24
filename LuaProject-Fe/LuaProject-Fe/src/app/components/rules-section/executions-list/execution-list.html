@@ -1,0 +1,18 @@
+<div class="overlay" (click)="close()">
+  <div class="rule-description">
+    <div class="header-title">
+      <h2>Storico (ultime 20 esecuzioni)</h2>
+      <mat-icon class="close-icon" (click)="close()">close</mat-icon>
+    </div>
+    @for (item of executions; track item.executionId) {
+    <div class="history-item">
+      <p><strong>Id Esecuzione:</strong> {{item.executionId}}</p>
+      <p><strong>Rule Name:</strong> {{item.ruleName}}</p>
+      <p [class.active]="item.success" [class.inactive]="!item.success"><strong>Successo:</strong> {{item.success ? 'Sì' : 'No'}}</p>
+      <span class="output-p"><strong>Output:</strong> {{item.output ? item.output : 'Nessun output'}}</span><br />
+      <span class="error-p"><strong>ErrorMessage:</strong> {{item.errorMessage ? item.errorMessage : 'Nessun messaggio di errore'}}</span>
+      <p><strong>Duration Ms:</strong> {{item.durationMs}}</p>
+    </div>
+    }
+  </div>
+</div>

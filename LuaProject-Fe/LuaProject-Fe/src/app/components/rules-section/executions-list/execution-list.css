@@ -1,0 +1,31 @@
+.rule-description {
+  max-height: 80%;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+}
+
+.history-item{
+  background-color: #e9e9e9;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.output-p {
+  color: #114cd5;
+}
+
+.error-p {
+  color: #ef4444;
+}
+
+.active {
+  color: #15803d !important;
+}
+
+.inactive {
+  color: #b91c1c !important;
+}

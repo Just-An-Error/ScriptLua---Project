@@ -1,0 +1,95 @@
+<button (click)="goToCreateRule()" class="btn-class">Vai a crea regola</button>
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nome</th>
+      <th>Descrizione</th>
+      <th>Codice Lua</th>
+      <th>Attivo</th>
+      <th>Data Creazione</th>
+      <th>Tipo di trigger</th>
+      <th>Azioni</th>
+      <th>Storico</th>
+      <th>Versioni</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(rule of allRules(); track rule.rulesId) {
+    <tr>
+      <td class="text-muted">{{rule.rulesId}}</td>
+      <td><strong>{{rule.rulesName}}</strong></td>
+      <td><button (click)="toggleDescription(rule.rulesDescription)" class="btn-class">Mostra Descrizione</button></td>
+      <td><button (click)="toggleCode(rule.rulesCodiceLua)" class="btn-class">Mostra Codice</button></td>
+      <td>
+        <span class="badge" [class.active]="rule.rulesIsActive" [class.inactive]="!rule.rulesIsActive">
+          {{rule.rulesIsActive}}
+        </span>
+      </td>
+      <td>{{rule.rulesCreatedAt | date:'dd/MM/yyyy'}}</td>
+      <td>{{rule.rulesTriggerType ? rule.rulesTriggerType : "Nessun tipo di trigger"}}</td>
+      <td>
+        <mat-icon class="build-icon" fontIcon="build" (click)="runRule(rule)"></mat-icon>
+        <mat-icon class="edit-icon" fontIcon="edit" (click)="openEditRule(rule.rulesId)"></mat-icon>
+        <mat-icon class="delete-icon" (click)="deleteRule(rule.rulesId)" fontIcon="delete"></mat-icon>
+      </td>
+      <td>
+        <button (click)="goToRuleHistory(rule.rulesId)" class="btn-class">Storico</button>
+      </td>
+      <td>
+        <button (click)="goToRuleVersions(rule.rulesId)" class="btn-class">Versioni</button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+@if (isViewDescription() === true) {
+<div class="overlay" (click)="closeDescription()">
+  <div class="rule-description">
+    <div class="header-title">
+      <h2>Descrizione</h2>
+      <mat-icon class="close-icon" (click)="closeDescription()">close</mat-icon>
+    </div>
+    <p>{{descriptionToShow()}}</p>
+  </div>
+</div>
+}
+@if (isViewCode() === true) {
+<div class="overlay" (click)="closeCode()">
+  <div class="rule-description">
+    <div class="header-title">
+      <h2>Codice Lua</h2>
+      <mat-icon class="close-icon" (click)="closeCode()">close</mat-icon>
+    </div>
+    <p>{{descriptionToShow()}}</p>
+  </div>
+</div>
+}
+@if (isEditing() === true) {
+<div class="overlay">
+  <div class="rule-description rule-form">
+    <div class="header-title">
+      <h2>Modifica Regola</h2>
+      <mat-icon class="close-icon" (click)="closeEditRule()">close</mat-icon>
+    </div>
+    <p>Nome</p>
+    <input type="text" [(ngModel)]="ruleToEdit()!.rulesName" placeholder="Nome Regola">
+    <p>Descrizione</p>
+    <input type="text" [(ngModel)]="ruleToEdit()!.rulesDescription" placeholder="Descrizione Regola">
+    <p>Codice Lua</p>
+    <textarea [(ngModel)]="ruleToEdit()!.rulesCodiceLua" placeholder="Codice Lua"></textarea>
+    <p>Tipo di trigger</p>
+    <input type="text" [(ngModel)]="ruleToEdit()!.rulesTriggerType" placeholder="Tipo di trigger">
+    <div class="button-container">
+      <button style="width: 60%;" (click)="saveEdit()">Salva Modifiche</button>
+      <button style="background-color: rgb(215, 53, 53); width: 40%;" (click)="cancelEdit()">Annulla</button>
+    </div>
+  </div>
+</div>
+}
+@if( isViewHistory() === true) {
+<app-execution-list [executions]="executionsToShow()" (closeHistory)="closeHistory()"></app-execution-list>
+}
+@if( isViewVersions() === true) {
+<app-versions-list [versions]="versionsToShow()" (closeVersions)="closeVersions()"></app-versions-list>
+}

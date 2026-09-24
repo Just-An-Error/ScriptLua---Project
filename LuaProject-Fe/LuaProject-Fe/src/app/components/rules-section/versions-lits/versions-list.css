@@ -1,0 +1,44 @@
+.rule-description {
+  max-height: 80%;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+}
+
+.history-item{
+  background-color: #e9e9e9;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.output-p {
+  color: #114cd5;
+}
+
+.error-p {
+  color: #ef4444;
+}
+
+.active {
+  color: #15803d !important;
+}
+
+.inactive {
+  color: #b91c1c !important;
+}
+
+.change-version {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin-top: 10px;
+  cursor: pointer;
+}

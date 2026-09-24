@@ -1,0 +1,6 @@
+@LuaProject_HostAddress = http://localhost:5169
+
+GET {{LuaProject_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

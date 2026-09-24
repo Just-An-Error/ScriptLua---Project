@@ -1,0 +1,18 @@
+<div class="overlay" (click)="close()">
+  <div class="rule-description">
+    <div class="header-title">
+      <h2>Storico (ultime 20 esecuzioni)</h2>
+      <mat-icon class="close-icon" (click)="close()">close</mat-icon>
+    </div>
+    @for (item of versions; track item.id) {
+    <div class="history-item">
+      <p><strong>Id Version:</strong> {{item.id}}</p>
+      <p><strong>Rule Id:</strong> {{item.ruleId}}</p>
+      <p><strong>Lua Code:</strong> {{item.luaCode}}</p>
+      <p><strong>Version Number:</strong> {{item.versionNumber}}</p>
+      <p><strong>Data Creazione:</strong> {{item.createdAt | date:'dd/MM/yyyy HH:mm:ss'}}</p>
+      <button (click)="changeToCyrrentVersion(item.ruleId, item.id)" class="change-version">Imposta a Versione Corrente</button>
+    </div>
+    }
+  </div>
+</div>

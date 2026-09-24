@@ -1,0 +1,36 @@
+<div class="rules-section">
+  <button (click)="goToList()" class="btn-class">Vai a Lista</button>
+  <h1>Crea una regola</h1>
+  <div class="rule-form">
+    <input type="text" placeholder="Nome della regola" [(ngModel)]="createRule.RulesName" />
+    <input type="text" placeholder="Descrizione della regola" [(ngModel)]="createRule.RulesDescription" />
+    <app-lua-code-editor [code]="createRule.rulesCodiceLua"
+      (codeChange)="createRule.rulesCodiceLua= $event"></app-lua-code-editor>
+    <p>Testa la regola con un input JSON</p>
+    <input type="text" placeholder="Input di test" [(ngModel)]="testInputJson" placeholder="Usare sintassi JSON" />
+    <button (click)="testRule()" style="background-color: orange;">Testa regola</button>
+    @if(testResult()) {
+    <div class="test-result">
+      <h4>Area Test</h4>
+      <p [style]="testResult()!.success ? 'color: green;' : 'color: red;'">{{ testResult()!.success ? 'Test riuscito' :
+        'Test fallito' }}</p>
+      @if (testResult()!.success) {
+      <p>Output: {{ testResult()!.output }}</p>
+      }@else {
+      <p>Errore: {{ testResult()!.errorMessage }}</p>
+      }
+      <p>Tempo di esecuzione: {{ testResult()!.durationMs }} ms</p>
+    </div>
+    }
+    <input type="text" placeholder="Tipo di trigger" [(ngModel)]="createRule.RulesTriggerType" />
+    <div class="form-group">
+      <span>Attivo</span>
+      <input type="checkbox" placeholder="Attivo" [(ngModel)]="createRule.RulesIsActive" />
+    </div>
+    @if(isLoading()) {
+    <mat-spinner style="width: 20px; height: 20px;"></mat-spinner>
+    }@else {
+    <button (click)="createNewRule(createRule)" class="btn-class">Crea regola</button>
+    }
+  </div>
+</div>

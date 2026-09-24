@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="LuaProject.Application/LuaProject.Application.csproj" />
+  <Project Path="LuaProject.Infrastracture/LuaProject.Infrastracture.csproj" />
+  <Project Path="LuaProject/LuaProject.csproj" />
+</Solution>

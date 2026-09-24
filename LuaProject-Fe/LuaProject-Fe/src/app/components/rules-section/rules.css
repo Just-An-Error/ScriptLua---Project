@@ -1,0 +1,47 @@
+.rules-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.rule-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.rule-form input[type="text"] {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.rule-form button {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.rule-form button:hover {
+  background-color: #205722;
+}
+
+.test-result {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #e1e1e1;
+}
